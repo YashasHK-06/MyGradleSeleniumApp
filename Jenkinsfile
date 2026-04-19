@@ -5,29 +5,35 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/YashasHK-06/MyGradleSeleniumApp.git'
+                git branch: 'main', url: 'https://github.com/YashasHK-06/MyGradleSeleniumApp.git'
+            }
+        }
+
+        stage('Setup Permissions') {
+            steps {
+                sh 'chmod +x gradlew'
             }
         }
 
         stage('Build') {
             steps {
-                sh './gradlew :app:build -Dorg.gradle.java.home=/opt/jdk17'
+                sh './gradlew :app:build'
             }
         }
 
         stage('Run Selenium') {
             steps {
-                sh './gradlew :app:run -Dorg.gradle.java.home=/opt/jdk17'
+                sh './gradlew :app:run'
             }
         }
     }
 
     post {
         success {
-            echo 'Gradle Selenium execution successful ✅'
+            echo 'Gradle Selenium execution successful'
         }
         failure {
-            echo 'Build failed ❌'
+            echo 'Build failed'
         }
     }
 }
