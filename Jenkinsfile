@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/Yashaswiiii8/MyGradleSeleniumApp.git'
+                git branch: 'master', url: 'https://github.com/YashasHK-06/MyGradleSeleniumApp.git'
             }
         }
 
